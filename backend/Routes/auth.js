@@ -1,13 +1,10 @@
 import { Router } from "express";
+import { signupController, loginController } from "../Controllers/auth.js";
+import { signupValidation, loginValidation } from "../Middlewares/AuthValidation.js";
 
 const authRouter = Router();
 
-authRouter.post("/login", (req, res) => {
-  res.send("Login success");
-});
-
-authRouter.post("/signup", (req, res) => {
-  res.send("Sing up success");
-})
+authRouter.post("/login", loginValidation, loginController);
+authRouter.post("/signup", signupValidation, signupController);
 
 export default authRouter;
